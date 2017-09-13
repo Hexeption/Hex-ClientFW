@@ -1,0 +1,15 @@
+/*
+!/.gitignore
+!/install.cmd
+!/pom.xml
+!/src/*
+!/README.md
+!/LICENSE.md
+
+!/minecraft/
+minecraft/src/main/java/net/minecraft/
+minecraft/src/main/java/mcp/
+minecraft/lib/
+minecraft/workspace/
+minecraft/target/
+minecraft/minecraft.iml
