@@ -7,6 +7,7 @@ CLS
 :: 1.8 Version
 SET MCP_LK=http://www.modcoderpack.com/files/mcp918.zip
 SET MC_VEV=1.8
+SET OPTIFINE_LK=http://hexeption.co.uk/optifine.zip
 
 :: Downloading MCP
 :: TODO Check if there is already and tmp folder
@@ -95,6 +96,35 @@ CALL mvn install:install-file -Dfile=lib\oshi-project\oshi-core\1.1\oshi-core-1.
 CALL mvn install:install-file -Dfile=workspace\versions\1.8.8\1.8.8.jar -DgroupId=net.minecraft -DartifactId=minecraft -Dversion=1.8.8 -Dpackaging=jar
 
 ECHO.
+
+:: Optifine
+:AskOptifine
+ECHO Would you like Optifine(Y/N)
+set INPUT=
+set /P INPUT=Type input: %=%
+If /I "%INPUT%"=="y" goto yesOP
+If /I "%INPUT%"=="n" goto noOP
+echo Incorrect input & goto AskOptifine
+:yesOP
+
+ECHO == Downloading Optifine ==
+CD ..
+MD tmp
+CD tmp
+powershell "(New-Object Net.WebClient).DownloadFile('%OPTIFINE_LK%', 'optifine.zip')"
+ECHO.
+
+ECHO == Unzipping Optifine ==
+powershell "Expand-Archive optifine.zip -DestinationPath optifine"
+DEL optifine.zip
+CD ..
+ECHO.
+
+ECHO == Copying Optifine Sources ==
+ROBOCOPY tmp\optifine\ minecraft\src\main\java /E /is
+ECHO.
+
+:noOP
 
 :: Clean Up
 ECHO == Clean Up ==

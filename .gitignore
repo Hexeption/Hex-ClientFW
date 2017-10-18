@@ -13,3 +13,7 @@ minecraft/lib/
 minecraft/workspace/
 minecraft/target/
 minecraft/minecraft.iml
+
+#Optifine
+minecraft/src/main/java/assets/
+minecraft/src/main/java/optfine/
